@@ -12,7 +12,7 @@
 [![PWA Ready](https://img.shields.io/badge/PWA-Ready-blueviolet.svg)](#instalação-no-celular)
 [![Play Store Ready](https://img.shields.io/badge/Play%20Store-TWA%20Ready-green.svg)](#publicação-na-play-store)
 
-[Demonstração](#funcionalidades) • [Instalação](#instalação) • [Play Store](#publicação-na-play-store) • [Tecnologias](#tecnologias)
+[Demonstração](#funcionalidades) • [Instalação](#instalação) • [Tecnologias](#tecnologias)
 
 </div>
 
