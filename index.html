@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Grimório Digital</title>
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c9a84c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Grimório">
+    <link rel="apple-touch-icon" href="img/icon-192.png">
+    <link rel="icon" type="image/svg+xml" href="img/icon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Mobile Header -->
+        <header id="mobile-header">
+            <button id="menu-toggle" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1>Grimório Digital</h1>
+            <div class="header-star"><span class="pentacle">&#9733;</span></div>
+        </header>
+        <!-- Sidebar Overlay -->
+        <div id="sidebar-overlay"></div>
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="grimoire-icon"><span class="pentacle">&#9733;</span></div>
+                <h1>Grimório Digital</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-section="home">
+                    <i class="fas fa-book-open"></i>
+                    <span>Início</span>
+                </li>
+                <li class="nav-item" data-section="notes">
+                    <i class="fas fa-feather-alt"></i>
+                    <span>Anotações</span>
+                </li>
+                <li class="nav-item" data-section="tarot">
+                    <span class="pentacle nav-pentacle">&#9733;</span>
+                    <span>Tarot</span>
+                </li>
+                <li class="nav-item" data-section="gods">
+                    <i class="fas fa-bolt"></i>
+                    <span>Deuses</span>
+                </li>
+                <li class="nav-item" data-section="herbs">
+                    <i class="fas fa-leaf"></i>
+                    <span>Herbologia</span>
+                </li>
+                <li class="nav-item" data-section="moon">
+                    <i class="fas fa-moon"></i>
+                    <span>Lua & Magia</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>&#9790; Blessed Be &#9790;</p>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- HOME -->
+            <section id="section-home" class="section active">
+                <div class="section-header">
+                    <h2>Bem-vindo ao seu Grimório Digital</h2>
+                    <div class="header-divider">&#10044;</div>
+                </div>
+                <div class="home-content">
+                    <div class="welcome-text">
+                        <p>Este é o seu espaço sagrado de conhecimento e sabedoria mística. Explore as páginas deste grimório e descubra os segredos do universo.</p>
+                    </div>
+                    <div class="home-cards">
+                        <div class="home-card" data-goto="notes">
+                            <i class="fas fa-feather-alt"></i>
+                            <h3>Anotações Pessoais</h3>
+                            <p>Seu caderno mágico pessoal para registrar pensamentos, feitiços e descobertas.</p>
+                        </div>
+                        <div class="home-card" data-goto="tarot">
+                            <span class="pentacle home-pentacle">&#9733;</span>
+                            <h3>Tarot</h3>
+                            <p>Estude os arcanos maiores e menores, e aprenda os tipos de tiragens.</p>
+                        </div>
+                        <div class="home-card" data-goto="gods">
+                            <i class="fas fa-bolt"></i>
+                            <h3>Deuses</h3>
+                            <p>Conheça as histórias dos deuses gregos e romanos.</p>
+                        </div>
+                        <div class="home-card" data-goto="herbs">
+                            <i class="fas fa-leaf"></i>
+                            <h3>Herbologia</h3>
+                            <p>Descubra as plantas mágicas e suas propriedades.</p>
+                        </div>
+                        <div class="home-card" data-goto="moon">
+                            <i class="fas fa-moon"></i>
+                            <h3>Lua & Magia</h3>
+                            <p>Fases da lua, dias da semana e cores mágicas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOTES -->
+            <section id="section-notes" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-feather-alt"></i> Anotações Pessoais</h2>
+                    <div class="header-divider">&#10044;</div>
+                </div>
+                <div class="notes-container">
+                    <div class="notes-sidebar">
+                        <button id="btn-new-note" class="btn-magic"><i class="fas fa-plus"></i> Nova Página</button>
+                        <div id="notes-list" class="notes-list"></div>
+                    </div>
+                    <div class="notes-editor">
+                        <div id="note-placeholder" class="note-placeholder">
+                            <i class="fas fa-book-open"></i>
+                            <p>Selecione uma página ou crie uma nova para começar a escrever...</p>
+                        </div>
+                        <div id="note-edit-area" class="note-edit-area" style="display:none;">
+                            <input type="text" id="note-title" placeholder="Título da página..." class="note-title-input">
+                            <textarea id="note-content" placeholder="Escreva aqui seus pensamentos, feitiços, receitas mágicas..." class="note-content-input"></textarea>
+                            <div class="note-actions">
+                                <button id="btn-save-note" class="btn-magic"><i class="fas fa-save"></i> Salvar</button>
+                                <button id="btn-delete-note" class="btn-danger"><i class="fas fa-trash"></i> Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAROT -->
+            <section id="section-tarot" class="section">
+                <div class="section-header">
+                    <h2><span class="pentacle section-pentacle">&#9733;</span> Estudo do Tarot</h2>
+                    <div class="header-divider">&#10044;</div>
+                </div>
+                <div class="tarot-tabs">
+                    <button class="tab-btn active" data-tab="arcanos-maiores">Arcanos Maiores</button>
+                    <button class="tab-btn" data-tab="arcanos-menores">Arcanos Menores</button>
+                    <button class="tab-btn" data-tab="tiragens">Tipos de Tiragem</button>
+                </div>
+                <div id="tarot-content" class="tarot-content">
+                    <div id="tab-arcanos-maiores" class="tab-content active"></div>
+                    <div id="tab-arcanos-menores" class="tab-content">
+                        <div class="naipe-filter">
+                            <button class="naipe-btn active" data-naipe="all">Todos</button>
+                            <button class="naipe-btn" data-naipe="copas">&#9829; Copas</button>
+                            <button class="naipe-btn" data-naipe="ouros">&#9830; Ouros</button>
+                            <button class="naipe-btn" data-naipe="espadas">&#9824; Espadas</button>
+                            <button class="naipe-btn" data-naipe="paus">&#9827; Paus</button>
+                        </div>
+                        <div id="arcanos-menores-grid" class="cards-grid"></div>
+                    </div>
+                    <div id="tab-tiragens" class="tab-content"></div>
+                </div>
+                <!-- Modal for card detail -->
+                <div id="card-modal" class="modal">
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <div id="modal-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GODS -->
+            <section id="section-gods" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bolt"></i> Deuses Gregos e Romanos</h2>
+                    <div class="header-divider">&#10044;</div>
+                </div>
+                <div class="gods-filter">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="olimpiano">Olimpianos</button>
+                    <button class="filter-btn" data-filter="tita">Titãs</button>
+                    <button class="filter-btn" data-filter="primordial">Primordiais</button>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="gods-search" placeholder="Buscar deuses...">
+                </div>
+                <div id="gods-grid" class="gods-grid"></div>
+                <div id="god-modal" class="modal">
+                    <div class="modal-content modal-large">
+                        <button class="modal-close">&times;</button>
+                        <div id="god-modal-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HERBS -->
+            <section id="section-herbs" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-leaf"></i> Herbologia Mágica</h2>
+                    <div class="header-divider">&#10044;</div>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="herbs-search" placeholder="Buscar ervas...">
+                </div>
+                <div id="herbs-grid" class="herbs-grid"></div>
+                <div id="herb-modal" class="modal">
+                    <div class="modal-content modal-large">
+                        <button class="modal-close">&times;</button>
+                        <div id="herb-modal-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MOON & MAGIC -->
+            <section id="section-moon" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-moon"></i> Lua, Dias & Cores Mágicas</h2>
+                    <div class="header-divider">&#10044;</div>
+                </div>
+                <div class="moon-tabs">
+                    <button class="tab-btn active" data-tab="moon-phases">Fases da Lua</button>
+                    <button class="tab-btn" data-tab="week-days">Dias da Semana</button>
+                    <button class="tab-btn" data-tab="magic-colors">Cores Mágicas</button>
+                </div>
+                <div id="moon-content" class="moon-content">
+                    <div id="tab-moon-phases" class="tab-content active"></div>
+                    <div id="tab-week-days" class="tab-content"></div>
+                    <div id="tab-magic-colors" class="tab-content"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/tarot.js"></script>
+    <script src="js/gods.js"></script>
+    <script src="js/herbs.js"></script>
+    <script src="js/moon.js"></script>
+    <script src="js/notes.js"></script>
+    <script src="js/images.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js');
+        }
+    </script>
+</body>
+</html>
