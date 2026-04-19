@@ -80,47 +80,6 @@ O **Grimório Digital** é uma aplicação web progressiva (PWA) completa para e
 3. No Safari (iOS): toque em **Compartilhar** → **"Adicionar à Tela de Início"**
 4. O app abrirá em tela cheia, como um app nativo!
 
-## 🏪 Publicação na Play Store
-
-O Grimório Digital está preparado para publicação na Play Store via **TWA (Trusted Web Activity)**.
-
-### Pré-requisitos
-1. **Hospedar o site com HTTPS** (GitHub Pages, Netlify, Vercel, etc.)
-2. Conta de desenvolvedor Google Play ($25 taxa única)
-
-### Passo a passo
-
-**Recomendado — use o [PWABuilder](https://www.pwabuilder.com/):**
-
-1. Hospede o app com HTTPS (GitHub Pages, Netlify, Vercel, etc.)
-2. Acesse **[pwabuilder.com](https://www.pwabuilder.com/)**
-3. Cole a URL do seu site hospedado
-4. Clique em **"Package for stores"** → **"Android"**
-5. Baixe o AAB (Android App Bundle) gerado
-6. Crie uma conta no [Google Play Console](https://play.google.com/console/) ($25 taxa única)
-7. Faça upload do AAB e publique!
-
-**Alternativa — Bubblewrap CLI:**
-```bash
-npm install -g @nicecode/nicecode
-npx nicecode init --manifest https://seusite.com/manifest.json
-npx nicecode build
-```
-Isso gera um projeto Android que empacota sua PWA como APK/AAB.
-
-### Digital Asset Links
-Após publicar, configure o arquivo `/.well-known/assetlinks.json` no seu servidor com a fingerprint SHA256 do seu certificado de assinatura:
-```json
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.seudominio.grimorio",
-    "sha256_cert_fingerprints": ["SUA_FINGERPRINT_SHA256_AQUI"]
-  }
-}]
-```
-
 ## 📂 Estrutura do Projeto
 
 ```
